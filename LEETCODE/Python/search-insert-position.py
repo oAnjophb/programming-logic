@@ -1,20 +1,21 @@
 class Solution:
     def searchInsert(self, nums, target):
+        left, right = 0, len(nums) - 1
 
-        for index, number in enumerate(nums):
-            if target in nums:
-                if target == number:
-                    print(index)
-                    break
+        while left <= right:
+            mid = (left + right) // 2
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] < target:
+                left = mid + 1
             else:
-                nums.append(target)
-                nums.sort()
-                if target == number:
-                    print(index)
-                    break
+                right = mid - 1
 
-nums = [1,3,5,6]
-target = 5
- 11243
+        return left
+
+nums = [1, 3, 5, 6]
 s = Solution()
-s.searchInsert(nums, target)
+print(s.searchInsert(nums, 5))
+print(s.searchInsert(nums, 2)) 
+print(s.searchInsert(nums, 7)) 
+print(s.searchInsert(nums, 0))
